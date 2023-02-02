@@ -5,27 +5,25 @@ import { Game } from './pages/Game';
 
 export const App = () => {
     return(
-        <div>
-            <BrowserRouter>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<LogIn/>}
-                    />
-                    <Route
-                        path="/login"
-                        element={<LogIn/>}
-                    />
-                    <Route
-                        path="/menu"
-                        element={<Menu/>}
-                    />
-                    <Route
-                        path="/game/:id"
-                        element={<Game/>}
-                    />
-                </Routes>    
-            </BrowserRouter>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<LogIn/>}
+                />
+                <Route
+                    path="/login"
+                    element={<LogIn/>}
+                />
+                <Route
+                    path="/menu"
+                    element={<Menu/>}
+                />
+                <Route
+                    path="/game/:id"
+                    element={<Game/>}
+                />
+            </Routes>    
+        </BrowserRouter>
     )
 };

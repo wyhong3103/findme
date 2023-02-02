@@ -1,3 +1,5 @@
+import '../styles/Menu.css';
+
 export const Menu = () => {
 
     const games = [

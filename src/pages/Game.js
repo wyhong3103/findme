@@ -1,3 +1,4 @@
+import '../styles/Game.css';
 import { useParams } from 'react-router-dom';
 
 export const Game = () => {

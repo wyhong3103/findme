@@ -22,12 +22,8 @@ export const Game = () => {
         ["Wizard", 1]
     ];
 
-    const setDropdown = (x, y) => {
-        setHideDropDown(prev => !prev);
-    }
-
     const setCoordinate = (e) => {
-        setDropdown();
+        setHideDropDown(prev => !prev);
         setX(Math.floor(e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth * 100));
         setY(Math.floor(e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight * 100));
     }

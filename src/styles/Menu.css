@@ -1,0 +1,36 @@
+.menu-card-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap : 3rem;
+    padding : 2rem;
+    color : black;
+}
+
+.menu-card{
+    display: flex;
+    flex-direction: column;
+    gap : 1rem;
+    border-radius: 1rem;
+    padding : 2rem;
+    transition: all 0.3s;
+}
+
+.menu-card-img{
+    height : 200px;
+    width : 300px;
+    object-fit: contain;
+}
+
+.menu-card h3{
+    font-family: var(--font1);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.menu-card:hover{
+    cursor: pointer;
+    background-color: var(--hover-gray);
+    transform: translateY(-10px);
+}

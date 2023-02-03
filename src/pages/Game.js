@@ -7,9 +7,13 @@ export const Game = () => {
 
     const bg = require(`../assets/${id}.jpg`);
 
+
+
     return(
         <div>
-            <img src={bg} alt="game-img"/>
+            <div className="game-img-cont">
+                <img src={bg} alt="game-img" onClick={(e) => {console.log(e)}}/>
+            </div>
         </div>
     )
 };

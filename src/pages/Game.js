@@ -1,15 +1,15 @@
 import '../styles/Game.css';
 import { useParams } from 'react-router-dom';
 import { GameNav } from '../components/GameNav';
-import { useRef, useContext, useState } from 'react';
+import { useRef, useContext, useState, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Navigate } from 'react-router-dom';
 
 export const Game = () => {
     
     const firstTime = useContext(UserContext).firstTime;
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
+    const [coord, setCoord] = useState([0,0]);
+    const [dimension, setDimension] = useState([1,1]);
     const [hideDropdown, setHideDropDown] = useState(true);
     const {id} = useParams();
     const dropdown = useRef();
@@ -24,9 +24,24 @@ export const Game = () => {
 
     const setCoordinate = (e) => {
         setHideDropDown(prev => !prev);
-        setX(Math.floor(e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth * 100));
-        setY(Math.floor(e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight * 100));
+        setCoord(
+            [
+                Math.floor(e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth * 100),
+                Math.floor(e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight * 100)
+            ]
+        );
     }
+
+    useEffect(() => {
+        if (!game.current) return; 
+
+        const resizeObserver = new ResizeObserver(() => {
+            setDimension([game.current.offsetWidth, game.current.offsetHeight]);
+        });
+        resizeObserver.observe(game.current);
+        return () => resizeObserver.disconnect(); // clean up 
+      }, []);
+
 
     return(
         <div>
@@ -46,8 +61,8 @@ export const Game = () => {
                                 className={`dropdown ${(hideDropdown ? "hide" : "show")}`}
                                 style= {
                                     {
-                                        top : `${(y/100)*(game.current ? game.current.offsetHeight : 1)}px`,
-                                        left : `${(x/100)*(game.current ? game.current.offsetWidth : 1)}px`
+                                        top : `${(coord[1]/100)*(dimension[1])}px`,
+                                        left : `${(coord[0]/100)*(dimension[0])}px`
                                     }
                                 }
                                 ref={dropdown}>

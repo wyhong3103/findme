@@ -27,6 +27,9 @@ export const GameNav = () => {
                     })
                 }
             </ul>
+            <h3 className='exit-btn'>
+                Exit
+            </h3>
         </div>
     )
 }

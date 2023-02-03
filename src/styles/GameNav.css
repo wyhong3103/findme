@@ -1,7 +1,7 @@
 .game-nav{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     font-family: var(--font1);
     padding : 2rem 4rem 2rem 4rem;
@@ -29,4 +29,18 @@
 
 .object-found {
     text-decoration: line-through;
+}
+
+.exit-btn{
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: white;
+    transition: all 0.3s;
+}
+
+.exit-btn:hover{
+    cursor: pointer;
+    background-color: var(--hover-gray);
+    transform: translateY(-5px);
 }

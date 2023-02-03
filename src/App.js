@@ -10,7 +10,7 @@ export const App = () => {
 
     const [firstTime, setFirstTime] = useState(true);
     const [username, setUsername] = useState("Anonymous");
-    const [profilePicture, setProfilePicture] = useState(require('../assets/anonymous.jpg'));
+    const [profilePicture, setProfilePicture] = useState(require('./assets/anonymous.jpg'));
 
     return(
         <UserContext.Provider value={

@@ -1,7 +1,7 @@
 import '../styles/Menu.css';
 import { MenuNav } from '../components/MenuNav';
 import {useContext} from 'react';
-import { UserContext } from './context/UserContext';
+import { UserContext } from '../context/UserContext';
 import { Navigate } from 'react-router-dom';
 
 

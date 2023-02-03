@@ -1,9 +1,11 @@
+import '../styles/GameNav.css';
+
 export const GameNav = () => {
     // Show Objects that are yet to be found
 
     const objects = [
         ["Waldo", 1],
-        ["Wizard",1]
+        ["Wizard",0]
     ]
 
     return(
@@ -14,10 +16,12 @@ export const GameNav = () => {
                         return (
                             (item[1] ?
                                 <li>
-                                    item[0]
+                                    {item[0]}
                                 </li>    
                                 :
-                                null
+                                <li className='object-found'>
+                                    {item[0]}
+                                </li>    
                             )
                         )
                     })

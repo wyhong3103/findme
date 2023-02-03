@@ -1,0 +1,32 @@
+.game-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font1);
+    padding : 2rem 4rem 2rem 4rem;
+}
+
+.game-objects{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap : 1rem;
+}
+
+.game-objects li{
+    font-size: 2rem;
+    border-radius: 1rem;
+    background-color: var(--hover-gray);
+    padding : 1rem;
+    transition: all 0.3s;
+}
+
+.game-objects li:hover{
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
+.object-found {
+    text-decoration: line-through;
+}

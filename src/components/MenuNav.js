@@ -1,3 +1,5 @@
+import '../styles/MenuNav.css';
+
 export const MenuNav = () => {
     return(
         <div className="menu-nav">

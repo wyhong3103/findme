@@ -17,10 +17,10 @@ export const Game = () => {
 
     const bg = require(`../assets/${id}.jpg`);
 
-    const objects = [
-        ["Waldo", 1],
-        ["Wizard", 1]
-    ];
+    const [objects, setObjects] = useState([
+        ["Waldo", 1, 83, 91, 30, 40],
+        ["Wizard", 1, 3, 22, 0, 13]
+    ]);
 
     const setCoordinate = (e) => {
         setHideDropDown(prev => !prev);
@@ -32,6 +32,16 @@ export const Game = () => {
         );
     }
 
+    const verifyItem = (index) => {
+        if (objects[index][1] === 1 && coord[0] >= objects[index][2] && coord[0] <= objects[index][3] && coord[1] >= objects[index][4] && coord[1] <= objects[index][5])
+        {
+            const temp = [...objects];
+            temp[index][1] = 0;
+            setObjects(temp);
+            setHideDropDown(prev => !prev);
+        }
+    }
+
     useEffect(() => {
         if (!game.current) return; 
 
@@ -40,9 +50,13 @@ export const Game = () => {
         });
         resizeObserver.observe(game.current);
         return () => resizeObserver.disconnect(); // clean up 
-      }, []);
+    }, []);
 
+    useEffect(() => {
+        console.log(coord);
+    }, [coord]) 
 
+    
     return(
         <div>
             {
@@ -54,7 +68,7 @@ export const Game = () => {
 
                 <div>
                     <GameNav objects={objects}/>
-                    <div class="game-cont">
+                    <div className="game-cont">
                         <div className="game-img-cont">
                             <img src={bg} alt="game-img" onClick={setCoordinate} ref={game}/>
                             <div
@@ -68,10 +82,10 @@ export const Game = () => {
                                 ref={dropdown}>
                                 <ul>
                                     {
-                                        objects.map((item) => {
+                                        objects.map((item, index) => {
                                             return(
                                                 item[1] ?
-                                                <li>
+                                                <li onClick={() => verifyItem(index)}>
                                                     {item[0]}
                                                 </li>
                                                 :

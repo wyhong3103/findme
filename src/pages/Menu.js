@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 
 export const Menu = () => {
 
-    const firstTime = useContext(UserContext);
+    const firstTime = useContext(UserContext).firstTime;
 
     const games = [
         [1, "Snow"],

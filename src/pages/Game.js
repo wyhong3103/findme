@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 
 export const Game = () => {
     
-    const firsTime = useContext(UserContext);
+    const firstTime = useContext(UserContext).firstTime;
     const {id} = useParams();
 
     const bg = require(`../assets/${id}.jpg`);
@@ -16,7 +16,7 @@ export const Game = () => {
     return(
         <div>
             {
-                firsTime ?
+                firstTime ?
 
                 <Navigate to="/login"/>
 

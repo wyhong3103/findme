@@ -8,14 +8,14 @@ import { UserContext } from './context/UserContext';
 
 export const App = () => {
 
-    const [firstTime, setFirstTime] = useState(true);
+    const [firstTime, setFirstTime] = useState(false);
     const [username, setUsername] = useState("Anonymous");
-    const [profilePicture, setProfilePicture] = useState(require('./assets/anonymous.jpg'));
+    const [pfp, setPfp] = useState(require('./assets/anonymous.jpg'));
 
     return(
         <UserContext.Provider value={
             {
-                firstTime, username, profilePicture
+                firstTime, username, pfp
             }
         }>
             <BrowserRouter>
@@ -31,7 +31,7 @@ export const App = () => {
                             <LogIn 
                                 setFirstTime={setFirstTime} 
                                 setUsername={setUsername} 
-                                setProfilePicture={setProfilePicture}
+                                setProfilePicture={setPfp}
                             />
                         }
                     />

@@ -1,12 +1,20 @@
 import '../styles/GameNav.css';
+import { useNavigate } from 'react-router-dom';
 
 export const GameNav = () => {
-    // Show Objects that are yet to be found
+    
+    const navigate = useNavigate();
+
+    // Show Objects that are yet to be found    
 
     const objects = [
         ["Waldo", 1],
         ["Wizard",0]
     ]
+
+    const toMenu = () => {
+        navigate('/');
+    }
 
     return(
         <div className="game-nav">
@@ -27,7 +35,7 @@ export const GameNav = () => {
                     })
                 }
             </ul>
-            <h3 className='exit-btn'>
+            <h3 className='exit-btn' onClick={toMenu}>
                 Exit
             </h3>
         </div>

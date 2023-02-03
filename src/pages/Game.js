@@ -12,6 +12,10 @@ export const Game = () => {
 
     const bg = require(`../assets/${id}.jpg`);
 
+    const objects = [
+        ["Waldo", 1],
+        ["Wizard", 0]
+    ];
 
     return(
         <div>
@@ -23,7 +27,7 @@ export const Game = () => {
                 :
 
                 <div>
-                    <GameNav/>
+                    <GameNav objects={objects}/>
                     <div className="game-img-cont">
                         <img src={bg} alt="game-img" onClick={(e) => {console.log(e)}}/>
                     </div>

@@ -1,16 +1,9 @@
 import '../styles/GameNav.css';
 import { useNavigate } from 'react-router-dom';
 
-export const GameNav = () => {
+export const GameNav = ({objects}) => {
     
     const navigate = useNavigate();
-
-    // Show Objects that are yet to be found    
-
-    const objects = [
-        ["Waldo", 1],
-        ["Wizard",0]
-    ]
 
     const toMenu = () => {
         navigate('/');

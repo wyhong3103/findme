@@ -1,4 +1,5 @@
 import '../styles/Menu.css';
+import { MenuNav } from '../components/MenuNav';
 
 export const Menu = () => {
 
@@ -10,6 +11,7 @@ export const Menu = () => {
 
     return(
         <div className='menu-cont'>
+           <MenuNav/>
            <div className="menu-card-cont">
                {
                     games.map((item) => {

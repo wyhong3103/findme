@@ -8,7 +8,7 @@ import { UserContext } from './context/UserContext';
 
 export const App = () => {
 
-    const [firstTime, setFirstTime] = useState(false);
+    const [firstTime, setFirstTime] = useState(true);
     const [username, setUsername] = useState("Anonymous");
     const [pfp, setPfp] = useState(require('./assets/anonymous.jpg'));
 

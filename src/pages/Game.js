@@ -63,7 +63,7 @@ export const Game = () => {
 
             const gameObjectArr = [];
             for(const i of Object.keys(docSnap.data())){
-                if (i == "levelName") continue;
+                if (i === "levelName") continue;
                 const temp = docSnap.data()[i];
                 const url = await getDownloadURL(ref(storage, `${id}/${temp[0]}.png`));
                 temp.push(url);

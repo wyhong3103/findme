@@ -43,13 +43,12 @@
     font-size: 2rem;
     padding: 1rem;
     border-radius: 2rem;
-    background-color: white;
+    background-color: var(--hover-gray);
     transition: all 0.3s;
 }
 
 .exit-btn:hover{
     cursor: pointer;
-    background-color: var(--hover-gray);
     transform: translateY(-5px);
 }
 

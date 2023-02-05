@@ -5,6 +5,28 @@ import { useRef, useContext, useState, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Navigate } from 'react-router-dom';
 
+
+const gameData = {
+    1 : [
+        ["Waldo", 1,83, 87, 78, 87],
+        ["Wizard", 1, 5, 8, 82, 87],
+        ["Odlaw", 1, 30, 32,69, 74],
+        ["Wenda", 1, 48, 50, 44, 50],
+    ],
+    2 : [
+        ["Waldo", 1, 39, 41, 54, 59],
+        ["Wizard", 1, 77, 79, 48, 53],
+        ["Odlaw", 1, 6, 7, 62, 65],
+        ["Wenda", 1, 28, 29, 42, 47],
+    ],
+    3 : [
+        ["Waldo", 1, 60, 63, 36, 44],
+        ["Wizard", 1, 26, 28, 35, 40],
+        ["Odlaw", 1, 10, 11, 35, 42],
+        ["Wenda", 1, 76, 78, 41, 45],
+    ]
+}
+
 export const Game = () => {
     
     const firstTime = useContext(UserContext).firstTime;
@@ -17,10 +39,11 @@ export const Game = () => {
 
     const bg = require(`../assets/${id}.jpg`);
 
-    const [objects, setObjects] = useState([
-        ["Waldo", 1, 83, 91, 30, 40],
-        ["Wizard", 1, 3, 22, 0, 13]
-    ]);
+    const [objects, setObjects] = useState(
+        gameData[id].map((item) => {
+            return [...item];
+        })
+    );
 
     const setCoordinate = (e) => {
         setHideDropDown(prev => !prev);
@@ -52,9 +75,6 @@ export const Game = () => {
         return () => resizeObserver.disconnect(); // clean up 
     }, []);
 
-    useEffect(() => {
-        console.log(coord);
-    }, [coord]) 
 
     
     return(

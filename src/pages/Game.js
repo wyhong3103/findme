@@ -4,46 +4,27 @@ import { GameNav } from '../components/GameNav';
 import { useRef, useContext, useState, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Navigate } from 'react-router-dom';
-
-
-const gameData = {
-    1 : [
-        ["Waldo", 1,83, 87, 78, 87],
-        ["Wizard", 1, 5, 8, 82, 87],
-        ["Odlaw", 1, 30, 32,69, 74],
-        ["Wenda", 1, 48, 50, 44, 50],
-    ],
-    2 : [
-        ["Waldo", 1, 39, 41, 54, 59],
-        ["Wizard", 1, 77, 79, 48, 53],
-        ["Odlaw", 1, 6, 7, 62, 65],
-        ["Wenda", 1, 28, 29, 42, 47],
-    ],
-    3 : [
-        ["Waldo", 1, 60, 63, 36, 44],
-        ["Wizard", 1, 26, 28, 35, 40],
-        ["Odlaw", 1, 10, 11, 35, 42],
-        ["Wenda", 1, 76, 78, 41, 45],
-    ]
-}
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 export const Game = () => {
     
+    const storage = getStorage();
+    const db = getFirestore();
     const firstTime = useContext(UserContext).firstTime;
     const [coord, setCoord] = useState([0,0]);
     const [dimension, setDimension] = useState([1,1]);
     const [hideDropdown, setHideDropDown] = useState(true);
+    /*
+    [
+        [charName,x1, x2, y1, y2, photoURL, found]
+    ]
+    */
+    const [gameObject, setGameObject] = useState([]);
     const {id} = useParams();
     const dropdown = useRef();
     const game = useRef();
-
     const bg = require(`../assets/${id}.jpg`);
-
-    const [objects, setObjects] = useState(
-        gameData[id].map((item) => {
-            return [...item];
-        })
-    );
 
     const setCoordinate = (e) => {
         setHideDropDown(prev => !prev);
@@ -56,11 +37,11 @@ export const Game = () => {
     }
 
     const verifyItem = (index) => {
-        if (objects[index][1] === 1 && coord[0] >= objects[index][2] && coord[0] <= objects[index][3] && coord[1] >= objects[index][4] && coord[1] <= objects[index][5])
+        if (gameObject[index][6] === 1 && coord[0] >= gameObject[index][1] && coord[0] <= gameObject[index][2] && coord[1] >= gameObject[index][3] && coord[1] <= gameObject[index][4])
         {
-            const temp = [...objects];
-            temp[index][1] = 0;
-            setObjects(temp);
+            const temp = [...gameObject];
+            temp[index][6] = 0;
+            setGameObject(temp);
             setHideDropDown(prev => !prev);
         }
     }
@@ -75,6 +56,24 @@ export const Game = () => {
         return () => resizeObserver.disconnect(); // clean up 
     }, []);
 
+    useEffect(() => {
+        (async () => {
+            const levelRef = doc(db, "game", id);
+            const docSnap = await getDoc(levelRef);
+
+            const gameObjectArr = [];
+            for(const i of Object.keys(docSnap.data())){
+                if (i == "levelName") continue;
+                const temp = docSnap.data()[i];
+                const url = await getDownloadURL(ref(storage, `${id}/${temp[0]}.png`));
+                temp.push(url);
+                temp.push(1);
+                gameObjectArr.push(temp);
+            }
+            setGameObject(gameObjectArr);
+        })();
+    }, [])
+
 
     
     return(
@@ -87,7 +86,7 @@ export const Game = () => {
                 :
 
                 <div>
-                    <GameNav objects={objects}/>
+                    <GameNav objects={gameObject}/>
                     <div className="game-cont">
                         <div className="game-img-cont">
                             <img src={bg} alt="game-img" onClick={setCoordinate} ref={game}/>
@@ -102,9 +101,9 @@ export const Game = () => {
                                 ref={dropdown}>
                                 <ul>
                                     {
-                                        objects.map((item, index) => {
+                                        gameObject.map((item, index) => {
                                             return(
-                                                item[1] ?
+                                                item[6] ?
                                                 <li onClick={() => verifyItem(index)}>
                                                     {item[0]}
                                                 </li>

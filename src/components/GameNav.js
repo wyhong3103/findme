@@ -15,7 +15,7 @@ export const GameNav = ({objects}) => {
                 {
                     objects.map((item) => {
                         return (
-                            (item[1] ?
+                            (item[6] ?
                                 <li>
                                     {item[0]}
                                 </li>    

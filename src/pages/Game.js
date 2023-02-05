@@ -86,10 +86,10 @@ export const Game = () => {
                 :
 
                 <div>
-                    <GameNav objects={gameObject}/>
                     <div className="game-cont">
                         <div className="game-img-cont">
-                            <img src={bg} alt="game-img" onClick={setCoordinate} ref={game}/>
+                            <GameNav objects={gameObject}/>
+                            <img className="game-img" src={bg} alt="game-img" onClick={setCoordinate} ref={game}/>
                             <div
                                 className={`dropdown ${(hideDropdown ? "hide" : "show")}`}
                                 style= {

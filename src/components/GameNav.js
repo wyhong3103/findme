@@ -17,10 +17,12 @@ export const GameNav = ({objects}) => {
                         return (
                             (item[6] ?
                                 <li>
+                                    <img src={item[5]} alt="obj-avatar" className='obj-avatar'/>
                                     {item[0]}
                                 </li>    
                                 :
                                 <li className='object-found'>
+                                    <img src={item[5]} alt="obj-avatar" className='obj-avatar'/>
                                     {item[0]}
                                 </li>    
                             )

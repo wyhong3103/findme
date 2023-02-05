@@ -1,4 +1,6 @@
 .game-cont{
+    height : 100vh;
+    width : 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +10,10 @@
     position: relative;
 }
 
-.game-img-cont img{
+.game-img{
     display: block;
-    max-width: calc(100vw * (85/100));
-    max-height: calc(100vh * (85/100));
+    max-width: calc(100vw * (95/100));
+    max-height: calc(100vh * (95/100));
     width: auto;
     height: auto;
     border-radius: calc(100vw * (1 / 100));

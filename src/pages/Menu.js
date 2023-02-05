@@ -4,14 +4,15 @@ import {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../context/UserContext';
 import { useNavigate, Navigate } from 'react-router-dom';
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
-
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 export const Menu = () => {
 
+    const storage = getStorage();
     const db = getFirestore();
     const firstTime = useContext(UserContext).firstTime;
     const navigate = useNavigate();
-    const [levels, setLevels] = useState([]);
+    const [level, setLevel] = useState([]);
 
     const toGame = (id) => {
         navigate(`/game/${id}`);
@@ -21,14 +22,19 @@ export const Menu = () => {
         () => {
             (async () => {
                 const temp = [];
-                const levelsRef = collection(db, "game");
-                const snapshot = await getDocs(levelsRef);
+                const levelRef = collection(db, "game");
+                const snapshot = await getDocs(levelRef);
                 snapshot.forEach(
                     doc => {
                         temp.push([doc.id, doc.data().levelName]);
                     }
                 )
-                setLevels(temp);
+                const levelArr = [];
+                for(const doc of temp){
+                    const url = await getDownloadURL(ref(storage, `${doc[0]}/m${doc[0]}.jpg`));
+                    levelArr.push([...doc, url]);
+                }
+                setLevel(levelArr);
             })();
         }
     , [])
@@ -46,11 +52,11 @@ export const Menu = () => {
                     <MenuNav/>
                     <div className="menu-card-cont">
                         {
-                                levels.map((item) => {
+                                level.map((item) => {
                                     return(
                                         <div className="menu-card" onClick={() => {toGame(item[0])}}>
                                             <h3>{item[1]}</h3>
-                                            <img src={require(`../assets/m${item[0]}.jpg`)} alt={item[1]} className="menu-card-img"/>
+                                            <img src={item[2]} alt={item[1]} className="menu-card-img"/>
                                         </div>
                                     )
                                 })

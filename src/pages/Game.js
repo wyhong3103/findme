@@ -106,12 +106,6 @@ export const Game = () => {
     return(
         <div>
             {
-                showLeaderboard ?  
-                <Leaderboard id={id} />
-                :
-                null
-            }
-            {
                 userContext.firstTime ?
 
                 <Navigate to="/login"/>
@@ -150,6 +144,12 @@ export const Game = () => {
                     </div>
                     </div>
                 </div>
+            }
+            {
+                showLeaderboard ?  
+                <Leaderboard id={id} hideLeaderboard={() => setShowLeaderboard(false)} />
+                :
+                null
             }
         </div>
     )

@@ -31,7 +31,7 @@ export const App = () => {
                             <LogIn 
                                 setFirstTime={setFirstTime} 
                                 setUsername={setUsername} 
-                                setProfilePicture={setPfp}
+                                setPfp={setPfp}
                             />
                         }
                     />

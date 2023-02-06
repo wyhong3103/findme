@@ -23,7 +23,7 @@ export const LogIn = ({setFirstTime, setUsername, setPfp}) => {
             getRedirectResult(auth)
             .then(
                 (result) => {
-                    if (result.user){
+                    if (result && result.user){
                         setFirstTime(false);
                         setUsername(result.user.displayName);
                         setPfp(result.user.photoURL);

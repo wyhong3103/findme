@@ -22,7 +22,7 @@ export const Leaderboard = ({id, hideLeaderboard}) => {
                 setLeaderboard(temp);
             })();
         }
-    )
+    ,[])
 
     return(
         <div>

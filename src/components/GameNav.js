@@ -13,15 +13,15 @@ export const GameNav = ({objects}) => {
         <div className="game-nav">
             <ul className="game-objects">
                 {
-                    objects.map((item) => {
+                    objects.map((item, index) => {
                         return (
                             (item[6] ?
-                                <li>
+                                <li key={index}>
                                     <img src={item[5]} alt="obj-avatar" className='obj-avatar'/>
                                     {item[0]}
                                 </li>    
                                 :
-                                <li className='object-found'>
+                                <li className='object-found' key={index}>
                                     <img src={item[5]} alt="obj-avatar" className='obj-avatar'/>
                                     {item[0]}
                                 </li>    

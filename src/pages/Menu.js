@@ -52,9 +52,9 @@ export const Menu = () => {
                     <MenuNav/>
                     <div className="menu-card-cont">
                         {
-                                level.map((item) => {
+                                level.map((item, index) => {
                                     return(
-                                        <div className="menu-card" onClick={() => {toGame(item[0])}}>
+                                        <div className="menu-card" onClick={() => {toGame(item[0])}} key={index}>
                                             <h3>{item[1]}</h3>
                                             <img src={item[2]} alt={item[1]} className="menu-card-img"/>
                                         </div>

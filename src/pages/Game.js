@@ -131,7 +131,7 @@ export const Game = () => {
                                         gameObject.map((item, index) => {
                                             return(
                                                 item[6] ?
-                                                <li onClick={() => verifyItem(index)}>
+                                                <li onClick={() => verifyItem(index)} key={index}>
                                                     {item[0]}
                                                 </li>
                                                 :

@@ -25,6 +25,10 @@ export const App = () => {
                         element={<Menu/>}
                     />
                     <Route
+                        path="/*"
+                        element={<Menu/>}
+                    />
+                    <Route
                         path="/login"
                         element=
                         {

@@ -52,7 +52,7 @@ export const Leaderboard = ({id, hideLeaderboard}) => {
                                 )
                             }
                         </ul>
-                        <button className='hide-leaderboard-btn' onClick={hideLeaderboard()}>
+                        <button className='hide-leaderboard-btn' onClick={hideLeaderboard}>
                             OK
                         </button>
                     </div>

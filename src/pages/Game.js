@@ -26,7 +26,6 @@ export const Game = () => {
     const [showLeaderboard, setShowLeaderboard] = useState(false);
     const [timestamp, setTimestamp] = useState(0);
     const [bg, setBg] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
     const {id} = useParams();
     const dropdown = useRef();
     const game = useRef();
@@ -104,15 +103,6 @@ export const Game = () => {
         }
     , [objectCount])
 
-    useEffect(
-        () => {
-            if (bg !== "" && objectCount !== -1){
-                setIsLoading(false);
-            }
-        }
-    ,[bg, objectCount])
-
-
     
     return(
         <div>
@@ -123,47 +113,38 @@ export const Game = () => {
 
                 :
 
-                (
-
-                    isLoading ?
-
-                    null
-
-                    :
-
-                    <div>
-                        <div className="game-cont">
-                            <div className="game-img-cont">
-                                <GameNav objects={gameObject}/>
-                                <img className="game-img" src={bg} alt="game-img" onClick={setCoordinate} ref={game}/>
-                                <div
-                                    className={`dropdown ${(hideDropdown ? "hide" : "show")}`}
-                                    style= {
-                                        {
-                                            top : `${(coord[1]/100)*(dimension[1])}px`,
-                                            left : `${(coord[0]/100)*(dimension[0])}px`
-                                        }
+                <div>
+                    <div className="game-cont">
+                        <div className="game-img-cont">
+                            <GameNav objects={gameObject}/>
+                            <img className="game-img" src={bg} alt="game-img" onClick={setCoordinate} ref={game}/>
+                            <div
+                                className={`dropdown ${(hideDropdown ? "hide" : "show")}`}
+                                style= {
+                                    {
+                                        top : `${(coord[1]/100)*(dimension[1])}px`,
+                                        left : `${(coord[0]/100)*(dimension[0])}px`
                                     }
-                                    ref={dropdown}>
-                                    <ul>
-                                        {
-                                            gameObject.map((item, index) => {
-                                                return(
-                                                    item[6] ?
-                                                    <li onClick={() => verifyItem(index)} key={index}>
-                                                        {item[0]}
-                                                    </li>
-                                                    :
-                                                    null
-                                                )
-                                            })
-                                        }
-                                    </ul>
-                                </div>
-                        </div>
+                                }
+                                ref={dropdown}>
+                                <ul>
+                                    {
+                                        gameObject.map((item, index) => {
+                                            return(
+                                                item[6] ?
+                                                <li onClick={() => verifyItem(index)} key={index}>
+                                                    {item[0]}
+                                                </li>
+                                                :
+                                                null
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                )
+                </div>
             }
             {
                 showLeaderboard ?  
